@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Destinations</h2>
+<div class="row">
+    {% for destination in destinations %}
+    <div class="col-md-4">
+        <div class="card">
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ destination.name }}</h5>
+                <p class="card-text">{{ destination.description|slice:":100" }}...</p>
+                <a href="{% url 'destination_detail' destination.pk %}" class="btn btn-primary">Details</a>
+                {% if user == destination.created_by %}
+                <a href="{% url 'destination_update' destination.pk %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'destination_delete' destination.pk %}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

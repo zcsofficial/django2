@@ -1,0 +1,20 @@
+<!-- destinations/templates/destinations/detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ destination.name }}</h2>
+   
+    <p><strong>Description:</strong> {{ destination.description }}</p>
+    <p><strong>Location:</strong> {{ destination.location }}</p>
+    <p><strong>Created By:</strong> {{ destination.created_by.username }}</p>
+    
+    {% if user == destination.created_by %}
+    <div class="mt-3">
+        <a href="{% url 'destination_update' destination.pk %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'destination_delete' destination.pk %}" class="btn btn-danger">Delete</a>
+    </div>
+    {% endif %}
+    <a href="{% url 'destination_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+<!-- destinations/templates/destinations/create.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Create a New Destination</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Create</button>
+    </form>
+    <a href="{% url 'destination_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+</div>
+{% endblock %}
